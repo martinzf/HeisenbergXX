@@ -61,10 +61,10 @@ program correl
 
         ! Read Phi matrix from file
         open(unit=10, file='spin_chain_data/eigenvectors.dat', status='old')
-        do j = 1, M
-            read(10, *, iostat=ios) (Phi(i, j), i = 1, N)
+        do i = 1, N
+            read(10, *, iostat=ios) (Phi(i, j), j = 1, M)
             if (ios /= 0) then
-                print *, 'Error reading column', j
+                print *, 'Error reading row', i
                 stop
             end if
         end do

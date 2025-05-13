@@ -20,6 +20,7 @@ program orth_polys
     integer :: MM, INFO
     integer, allocatable :: ISUPPZ(:), IWORK(:)
     real(RP), allocatable :: WORK(:)
+    logical :: TRYRAC = .true.
 
     ! Initialisation
     call read_data(N, J, b)
@@ -45,7 +46,7 @@ program orth_polys
     end do
 
     ! Roots
-    call dstegr('V', 'A', N, b, J, 0._RP, 0._RP, 0, 0, 0.d0, MM, E, Phi, N, ISUPPZ, WORK, 18*N, IWORK, 10*N, INFO)
+    call dstemr('V', 'A', N, b, J, 0._RP, 0._RP, 0, 0, MM, E, Phi, N, N, ISUPPZ, TRYRAC, WORK, 18*N, IWORK, 10*N, INFO)
     if (INFO /= 0) stop "Error diagonalising matrix"
 
     ! Weights
