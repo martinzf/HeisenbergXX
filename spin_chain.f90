@@ -46,7 +46,7 @@ program orth_polys
     end do
 
     ! Roots
-    call dstemr('V', 'A', N, b, J, 0._RP, 0._RP, 0, 0, MM, E, Phi, N, N, ISUPPZ, TRYRAC, WORK, 18*N, IWORK, 10*N, INFO)
+    call dstemr('V', 'A', N, -b, -J, 0._RP, 0._RP, 0, 0, MM, E, Phi, N, N, ISUPPZ, TRYRAC, WORK, 18*N, IWORK, 10*N, INFO)
     if (INFO /= 0) stop "Error diagonalising matrix"
 
     ! Weights
@@ -128,7 +128,7 @@ program orth_polys
         if (ios /= 0) stop "Error opening spin_chain_data/eigenvectors.dat file"
 
         ! Write three arrays as rows
-        write(20, '(*(G0.6,:," "))') (- E(i), i = N, 1, -1)
+        write(20, '(*(G0.6,:," "))') (E(i), i = 1, N)
         write(20, '(*(G0.6,:," "))') (w(i), i = 1, N)
         write(20, '(*(G0.6,:," "))') (exp(log_g(i)), i = 1, N)
 
