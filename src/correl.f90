@@ -33,6 +33,7 @@ program correl
         nu(1:L, L) = eig
         deallocate(CL, eig, WORK)
     end do
+    write (*, '(A)') ''
 
     ! Save data
     call write_arrays(N, C, nu)

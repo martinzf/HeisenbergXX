@@ -2,3 +2,4 @@ venv
 code*
 correl
 spin_chain
+__pycache__
